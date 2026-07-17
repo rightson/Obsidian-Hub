@@ -1,0 +1,46 @@
+[
+  {
+    "title": "Explain monads simply",
+    "create_time": 1751356800.0,
+    "update_time": 1751360400.0,
+    "conversation_id": "c0ffee00-aaaa-bbbb-cccc-ddddeeee0001",
+    "default_model_slug": "gpt-4o",
+    "current_node": "node3",
+    "mapping": {
+      "root": {"id": "root", "message": null, "parent": null, "children": ["node1"]},
+      "node1": {
+        "id": "node1",
+        "parent": "root",
+        "children": ["node2"],
+        "message": {
+          "author": {"role": "system"},
+          "create_time": null,
+          "content": {"content_type": "text", "parts": [""]},
+          "metadata": {"is_visually_hidden_from_conversation": true}
+        }
+      },
+      "node2": {
+        "id": "node2",
+        "parent": "node1",
+        "children": ["node3"],
+        "message": {
+          "author": {"role": "user"},
+          "create_time": 1751356800.0,
+          "content": {"content_type": "text", "parts": ["Explain monads simply, please."]},
+          "metadata": {}
+        }
+      },
+      "node3": {
+        "id": "node3",
+        "parent": "node2",
+        "children": [],
+        "message": {
+          "author": {"role": "assistant"},
+          "create_time": 1751356830.0,
+          "content": {"content_type": "text", "parts": ["A monad is a container with a flatMap: it lets you chain computations while the container handles the plumbing."]},
+          "metadata": {"model_slug": "gpt-4o"}
+        }
+      }
+    }
+  }
+]
