@@ -9,7 +9,7 @@ from __future__ import annotations
 
 from typing import Any
 
-from obsidianhub.model import Conversation
+from obsidianllmhub.model import Conversation
 
 DEFAULT_CHUNK_CHARS = 2000
 

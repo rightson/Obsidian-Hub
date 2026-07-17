@@ -4,8 +4,8 @@ Layout (see docs/DESIGN.md):
     vault/
       conversations/<source>/<YYYY>/<MM>/<slug>-<id8>.md
       index.md
-      .obsidianhub/state.json
-      .obsidianhub/chunks/<id8>.jsonl
+      .obsidianllmhub/state.json
+      .obsidianllmhub/chunks/<id8>.jsonl
 """
 
 from __future__ import annotations
@@ -15,10 +15,10 @@ import json
 from dataclasses import dataclass, field
 from pathlib import Path
 
-from obsidianhub.model import Conversation
-from obsidianhub.pipeline import chunker, linker, markdown, tagger
+from obsidianllmhub.model import Conversation
+from obsidianllmhub.pipeline import chunker, linker, markdown, tagger
 
-STATE_DIR = ".obsidianhub"
+STATE_DIR = ".obsidianllmhub"
 
 
 @dataclass
@@ -49,10 +49,10 @@ class Vault:
         self.chunks_dir.mkdir(parents=True, exist_ok=True)
         if not self.state_path.exists():
             self._save_state({})
-        config = self.root / "obsidianhub.toml"
+        config = self.root / "obsidianllmhub.toml"
         if not config.exists():
             config.write_text(
-                "# Obsidian Hub vault configuration\n"
+                "# Obsidian LLMHub vault configuration\n"
                 '[vault]\nname = "my-ai-knowledge"\n\n'
                 "[pipeline]\nchunk_chars = 2000\nmax_tags = 8\n\n"
                 "[git]\nauto_commit = true\n",
@@ -147,11 +147,11 @@ class Vault:
         )
         lines = [
             "---",
-            "title: Obsidian Hub Index",
+            "title: Obsidian LLMHub Index",
             "type: moc",
             "---",
             "",
-            "# 🪞 Obsidian Hub — Conversation Index",
+            "# 🪞 Obsidian LLMHub — Conversation Index",
             "",
             f"{len(entries)} conversations mirrored.",
             "",

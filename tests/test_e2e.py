@@ -2,7 +2,7 @@ import json
 import subprocess
 from pathlib import Path
 
-from obsidianhub.cli import main
+from obsidianllmhub.cli import main
 
 FIXTURES = Path(__file__).parent / "fixtures"
 
@@ -10,7 +10,7 @@ FIXTURES = Path(__file__).parent / "fixtures"
 def test_init_import_status_roundtrip(tmp_path, capsys):
     vault = tmp_path / "vault"
     assert main(["init", str(vault)]) == 0
-    assert (vault / "obsidianhub.toml").exists()
+    assert (vault / "obsidianllmhub.toml").exists()
 
     assert main([
         "import", str(FIXTURES / "claude_export.json"),
@@ -30,8 +30,8 @@ def test_init_import_status_roundtrip(tmp_path, capsys):
     assert "## Related" in content
 
     # index + chunks generated
-    assert "Obsidian Hub" in (vault / "index.md").read_text(encoding="utf-8")
-    assert len(list(vault.glob(".obsidianhub/chunks/*.jsonl"))) == 3
+    assert "Obsidian LLMHub" in (vault / "index.md").read_text(encoding="utf-8")
+    assert len(list(vault.glob(".obsidianllmhub/chunks/*.jsonl"))) == 3
 
     # second import is a no-op (idempotent)
     assert main([
@@ -82,4 +82,4 @@ def test_git_autocommit(tmp_path, capsys):
     log = subprocess.run(
         ["git", "-C", str(vault), "log", "--oneline"], capture_output=True, text=True
     ).stdout
-    assert "obsidian-hub: sync 2 new" in log
+    assert "obsidian-llmhub: sync 2 new" in log

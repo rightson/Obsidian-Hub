@@ -1,6 +1,6 @@
-"""Importer for Obsidian Hub's own canonical JSON format.
+"""Importer for Obsidian LLMHub's own canonical JSON format.
 
-Any tool can emit this format to feed Obsidian Hub directly — this is the
+Any tool can emit this format to feed Obsidian LLMHub directly — this is the
 integration point for sources without a dedicated importer (Open WebUI
 plugins, custom scripts, MCP capture, ...). Accepts a single conversation
 object or a list of them; the shape matches ``Conversation.to_dict()``.
@@ -10,7 +10,7 @@ from __future__ import annotations
 
 from typing import Any
 
-from obsidianhub.model import Conversation, Message, iso_utc
+from obsidianllmhub.model import Conversation, Message, iso_utc
 
 SOURCE = "generic"
 

@@ -1,5 +1,5 @@
-from obsidianhub.model import Conversation, Message, slugify
-from obsidianhub.pipeline import chunker, linker, markdown, tagger
+from obsidianllmhub.model import Conversation, Message, slugify
+from obsidianllmhub.pipeline import chunker, linker, markdown, tagger
 
 
 def _conv(**kwargs):

@@ -1,9 +1,9 @@
-# 🟣 Obsidian Hub
+# 🟣 Obsidian LLMHub
 
 > **Mirror your AI. Own your knowledge.**
 
 **Git for AI conversations.** AI conversations are valuable, but today they
-disappear into proprietary chat histories. Obsidian Hub captures your AI
+disappear into proprietary chat histories. Obsidian LLMHub captures your AI
 conversations, converts them into structured Markdown, enriches them with
 metadata, links them into your knowledge graph, and stores everything in your
 own repository — searchable, version-controlled, and future-proof.
@@ -27,15 +27,15 @@ See [docs/DESIGN.md](docs/DESIGN.md) for the full architecture and roadmap.
 pip install -e .
 
 # 1. Create a vault (any directory; git init it for version history)
-obsidian-hub init ~/ai-vault
+obsidian-llmhub init ~/ai-vault
 git -C ~/ai-vault init
 
 # 2. Import your AI conversation exports (format auto-detected)
-obsidian-hub import ~/Downloads/claude-export/conversations.json --vault ~/ai-vault
-obsidian-hub import ~/Downloads/chatgpt-export/conversations.json --vault ~/ai-vault
+obsidian-llmhub import ~/Downloads/claude-export/conversations.json --vault ~/ai-vault
+obsidian-llmhub import ~/Downloads/chatgpt-export/conversations.json --vault ~/ai-vault
 
 # 3. Inspect
-obsidian-hub status --vault ~/ai-vault
+obsidian-llmhub status --vault ~/ai-vault
 ```
 
 Re-running an import is **idempotent**: unchanged conversations are skipped,
@@ -47,7 +47,7 @@ updated ones are rewritten, and each sync becomes one clean Git commit.
   conversation with YAML frontmatter (id, source, dates, tags), role-labeled
   sections, and `[[wiki-links]]` to related conversations.
 - `index.md` — an auto-generated map of content, newest first.
-- `.obsidianhub/chunks/*.jsonl` — embedding-ready chunks for RAG tooling.
+- `.obsidianllmhub/chunks/*.jsonl` — embedding-ready chunks for RAG tooling.
 
 Open the vault in **Obsidian** or **Logseq** and your AI history becomes a
 browsable, linked second brain.

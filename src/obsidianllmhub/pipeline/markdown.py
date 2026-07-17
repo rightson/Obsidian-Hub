@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from obsidianhub.model import Conversation
+from obsidianllmhub.model import Conversation
 
 _ROLE_HEADINGS = {
     "user": "## 🧑 User",

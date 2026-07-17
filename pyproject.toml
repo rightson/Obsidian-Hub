@@ -3,7 +3,7 @@ requires = ["setuptools>=68"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "obsidian-hub"
+name = "obsidian-llmhub"
 version = "0.1.0"
 description = "Git for AI conversations - mirror your AI chats into a version-controlled Obsidian knowledge vault"
 readme = "README.md"
@@ -18,10 +18,10 @@ classifiers = [
 ]
 
 [project.scripts]
-obsidian-hub = "obsidianhub.cli:main"
+obsidian-llmhub = "obsidianllmhub.cli:main"
 
 [project.urls]
-Homepage = "https://github.com/rightson/Obsidian-Hub"
+Homepage = "https://github.com/rightson/Obsidian-LLMHub"
 
 [tool.setuptools.packages.find]
 where = ["src"]
