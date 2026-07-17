@@ -1,0 +1,59 @@
+[
+  {
+    "uuid": "a1b2c3d4-1111-2222-3333-444455556666",
+    "name": "Designing a Redis rate limiter",
+    "created_at": "2026-07-01T09:12:00.000000Z",
+    "updated_at": "2026-07-01T09:48:00.000000Z",
+    "account": {"uuid": "acct-123"},
+    "chat_messages": [
+      {
+        "uuid": "m1",
+        "sender": "human",
+        "created_at": "2026-07-01T09:12:00.000000Z",
+        "text": "How should I design a rate limiter in Redis for a Python API?",
+        "content": [
+          {"type": "text", "text": "How should I design a rate limiter in Redis for a Python API?"}
+        ]
+      },
+      {
+        "uuid": "m2",
+        "sender": "assistant",
+        "created_at": "2026-07-01T09:12:30.000000Z",
+        "text": "",
+        "content": [
+          {"type": "text", "text": "Use a sliding window with a Redis sorted set. The rate limiter stores timestamps:\n\n```python\nimport redis\n\ndef allow(client, key, limit, window):\n    now = time.time()\n    client.zremrangebyscore(key, 0, now - window)\n    return client.zcard(key) < limit\n```\n\nThis rate limiter approach handles bursts well in Redis."}
+        ]
+      },
+      {
+        "uuid": "m3",
+        "sender": "human",
+        "created_at": "2026-07-01T09:40:00.000000Z",
+        "text": "What about a token bucket rate limiter in Redis instead?",
+        "content": []
+      }
+    ]
+  },
+  {
+    "uuid": "b2c3d4e5-7777-8888-9999-000011112222",
+    "name": "Redis persistence options",
+    "created_at": "2026-07-02T10:00:00.000000Z",
+    "updated_at": "2026-07-02T10:20:00.000000Z",
+    "account": {"uuid": "acct-123"},
+    "chat_messages": [
+      {
+        "uuid": "m1",
+        "sender": "human",
+        "created_at": "2026-07-02T10:00:00.000000Z",
+        "text": "Compare Redis RDB and AOF persistence. Which suits a rate limiter cache in Redis? I care about Redis durability and python client behavior on redis restart, plus rate limiter state loss.",
+        "content": []
+      },
+      {
+        "uuid": "m2",
+        "sender": "assistant",
+        "created_at": "2026-07-02T10:01:00.000000Z",
+        "text": "RDB snapshots Redis periodically; AOF logs every write. For a rate limiter cache in Redis, losing a few seconds is fine, so RDB (or no persistence) is typical. Your python rate limiter should treat Redis as ephemeral.",
+        "content": []
+      }
+    ]
+  }
+]
