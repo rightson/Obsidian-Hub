@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from mirrormind.model import Conversation
+from obsidianhub.model import Conversation
 
 _ROLE_HEADINGS = {
     "user": "## 🧑 User",

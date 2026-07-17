@@ -9,7 +9,7 @@ from __future__ import annotations
 
 from typing import Any
 
-from mirrormind.model import Conversation
+from obsidianhub.model import Conversation
 
 DEFAULT_CHUNK_CHARS = 2000
 

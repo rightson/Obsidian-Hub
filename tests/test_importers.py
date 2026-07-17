@@ -3,7 +3,7 @@ from pathlib import Path
 
 import pytest
 
-from mirrormind import importers
+from obsidianhub import importers
 
 FIXTURES = Path(__file__).parent / "fixtures"
 

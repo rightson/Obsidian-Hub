@@ -4,8 +4,8 @@ Layout (see docs/DESIGN.md):
     vault/
       conversations/<source>/<YYYY>/<MM>/<slug>-<id8>.md
       index.md
-      .mirrormind/state.json
-      .mirrormind/chunks/<id8>.jsonl
+      .obsidianhub/state.json
+      .obsidianhub/chunks/<id8>.jsonl
 """
 
 from __future__ import annotations
@@ -15,10 +15,10 @@ import json
 from dataclasses import dataclass, field
 from pathlib import Path
 
-from mirrormind.model import Conversation
-from mirrormind.pipeline import chunker, linker, markdown, tagger
+from obsidianhub.model import Conversation
+from obsidianhub.pipeline import chunker, linker, markdown, tagger
 
-STATE_DIR = ".mirrormind"
+STATE_DIR = ".obsidianhub"
 
 
 @dataclass
@@ -49,10 +49,10 @@ class Vault:
         self.chunks_dir.mkdir(parents=True, exist_ok=True)
         if not self.state_path.exists():
             self._save_state({})
-        config = self.root / "mirrormind.toml"
+        config = self.root / "obsidianhub.toml"
         if not config.exists():
             config.write_text(
-                "# MirrorMind vault configuration\n"
+                "# Obsidian Hub vault configuration\n"
                 '[vault]\nname = "my-ai-knowledge"\n\n'
                 "[pipeline]\nchunk_chars = 2000\nmax_tags = 8\n\n"
                 "[git]\nauto_commit = true\n",
@@ -147,11 +147,11 @@ class Vault:
         )
         lines = [
             "---",
-            "title: MirrorMind Index",
+            "title: Obsidian Hub Index",
             "type: moc",
             "---",
             "",
-            "# 🪞 MirrorMind — Conversation Index",
+            "# 🪞 Obsidian Hub — Conversation Index",
             "",
             f"{len(entries)} conversations mirrored.",
             "",

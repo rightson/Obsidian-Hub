@@ -1,8 +1,8 @@
-"""MirrorMind command-line interface.
+"""Obsidian Hub command-line interface.
 
-    mirrormind init <vault>
-    mirrormind import <export.json ...> --vault <vault> [--source auto] [--no-git]
-    mirrormind status --vault <vault>
+    obsidian-hub init <vault>
+    obsidian-hub import <export.json ...> --vault <vault> [--source auto] [--no-git]
+    obsidian-hub status --vault <vault>
 """
 
 from __future__ import annotations
@@ -12,15 +12,15 @@ import json
 import sys
 from pathlib import Path
 
-from mirrormind import __version__, importers
-from mirrormind.sinks import git
-from mirrormind.sinks.filesystem import Vault
+from obsidianhub import __version__, importers
+from obsidianhub.sinks import git
+from obsidianhub.sinks.filesystem import Vault
 
 
 def _cmd_init(args: argparse.Namespace) -> int:
     vault = Vault(Path(args.vault))
     vault.init()
-    print(f"Initialized MirrorMind vault at {vault.root}")
+    print(f"Initialized Obsidian Hub vault at {vault.root}")
     if not git.is_repo(vault.root):
         print("Tip: run `git init` in the vault to get version-controlled history.")
     return 0
@@ -65,7 +65,7 @@ def _cmd_import(args: argparse.Namespace) -> int:
     if report.changed and not args.no_git:
         commit = git.commit_changes(
             vault.root,
-            f"mirrormind: sync {len(report.new)} new, {len(report.updated)} updated",
+            f"obsidian-hub: sync {len(report.new)} new, {len(report.updated)} updated",
         )
         if commit:
             print(f"Committed as {commit}")
@@ -75,7 +75,7 @@ def _cmd_import(args: argparse.Namespace) -> int:
 def _cmd_status(args: argparse.Namespace) -> int:
     vault = Vault(Path(args.vault))
     if not vault.exists:
-        print(f"No vault at {vault.root} (run `mirrormind init` first)", file=sys.stderr)
+        print(f"No vault at {vault.root} (run `obsidian-hub init` first)", file=sys.stderr)
         return 1
     state = json.loads(vault.state_path.read_text(encoding="utf-8"))
     by_source: dict[str, int] = {}
@@ -90,10 +90,10 @@ def _cmd_status(args: argparse.Namespace) -> int:
 
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
-        prog="mirrormind",
+        prog="obsidian-hub",
         description="Git for AI conversations - mirror your AI chats into a knowledge vault.",
     )
-    parser.add_argument("--version", action="version", version=f"mirrormind {__version__}")
+    parser.add_argument("--version", action="version", version=f"obsidian-hub {__version__}")
     sub = parser.add_subparsers(dest="command", required=True)
 
     p_init = sub.add_parser("init", help="create a new vault")

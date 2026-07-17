@@ -3,9 +3,9 @@ requires = ["setuptools>=68"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "mirrormind"
+name = "obsidian-hub"
 version = "0.1.0"
-description = "Git for AI conversations - mirror your AI chats into a version-controlled knowledge vault"
+description = "Git for AI conversations - mirror your AI chats into a version-controlled Obsidian knowledge vault"
 readme = "README.md"
 license = { file = "LICENSE" }
 requires-python = ">=3.10"
@@ -18,10 +18,10 @@ classifiers = [
 ]
 
 [project.scripts]
-mirrormind = "mirrormind.cli:main"
+obsidian-hub = "obsidianhub.cli:main"
 
 [project.urls]
-Homepage = "https://github.com/rightson/MirrorMind"
+Homepage = "https://github.com/rightson/Obsidian-Hub"
 
 [tool.setuptools.packages.find]
 where = ["src"]

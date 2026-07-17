@@ -1,5 +1,5 @@
-from mirrormind.model import Conversation, Message, slugify
-from mirrormind.pipeline import chunker, linker, markdown, tagger
+from obsidianhub.model import Conversation, Message, slugify
+from obsidianhub.pipeline import chunker, linker, markdown, tagger
 
 
 def _conv(**kwargs):

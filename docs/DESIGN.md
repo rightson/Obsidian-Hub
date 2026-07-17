@@ -1,4 +1,4 @@
-# MirrorMind — Design Document
+# Obsidian Hub — Design Document
 
 > **Mirror your AI. Own your knowledge.**
 
@@ -7,7 +7,7 @@
 **Git for AI conversations.**
 
 AI conversations are valuable, but today they disappear into proprietary chat
-histories. MirrorMind continuously captures your AI conversations, converts
+histories. Obsidian Hub continuously captures your AI conversations, converts
 them into structured Markdown, enriches them with metadata, links them into
 your knowledge graph, and stores everything in your own repository.
 
@@ -54,11 +54,11 @@ Your conversations remain **searchable**, **version-controlled**, and
 
 | Layer | Responsibility | Code |
 |---|---|---|
-| **Importers** | Parse a source's export format into canonical `Conversation` objects; auto-detect format | `mirrormind/importers/` |
-| **Model** | Canonical schema: `Conversation`, `Message` | `mirrormind/model.py` |
-| **Pipeline** | Stateless enrichment stages operating on the canonical model | `mirrormind/pipeline/` |
-| **Sinks** | Write pipeline output to a destination; track state for idempotency | `mirrormind/sinks/` |
-| **CLI** | `mirrormind init / import / status` | `mirrormind/cli.py` |
+| **Importers** | Parse a source's export format into canonical `Conversation` objects; auto-detect format | `obsidianhub/importers/` |
+| **Model** | Canonical schema: `Conversation`, `Message` | `obsidianhub/model.py` |
+| **Pipeline** | Stateless enrichment stages operating on the canonical model | `obsidianhub/pipeline/` |
+| **Sinks** | Write pipeline output to a destination; track state for idempotency | `obsidianhub/sinks/` |
+| **CLI** | `obsidian-hub init / import / status` | `obsidianhub/cli.py` |
 
 ### 3.2 Canonical data model
 
@@ -84,11 +84,11 @@ Conversation:
 
 ```
 vault/
-├── mirrormind.toml                 # vault config
+├── obsidianhub.toml                 # vault config
 ├── conversations/
 │   └── <source>/<YYYY>/<MM>/<slug>-<id8>.md
 ├── index.md                        # auto-generated map of content
-└── .mirrormind/
+└── .obsidianhub/
     ├── state.json                  # id → content hash (idempotent sync)
     └── chunks/<id8>.jsonl          # embedding-ready chunks
 ```
@@ -143,10 +143,10 @@ like a changelog of your knowledge.
   importers, Markdown/YAML render, chunking, tagging, linking, filesystem
   vault, Git auto-commit, CLI, tests.
 - **M1 — More sources.** Gemini Takeout, Perplexity, Cursor/Windsurf local
-  chat DBs, Open WebUI export. Watch-mode (`mirrormind sync --watch`) over a
+  chat DBs, Open WebUI export. Watch-mode (`obsidian-hub sync --watch`) over a
   downloads folder.
 - **M2 — LLM enrichment.** Optional summaries, semantic tags, and titles via
-  the Claude API; embeddings + local vector index; `mirrormind search`.
+  the Claude API; embeddings + local vector index; `obsidian-hub search`.
 - **M3 — Continuous capture.** Browser extension / MCP server that streams
   conversations as they happen; Notion & Logseq sinks; scheduled sync
   (cron/Routines).
@@ -154,7 +154,7 @@ like a changelog of your knowledge.
 ## 5. Non-goals
 
 - Hosting user data on any server we run.
-- Reimplementing a chat client. MirrorMind mirrors; it doesn't chat.
+- Reimplementing a chat client. Obsidian Hub mirrors; it doesn't chat.
 - Perfect fidelity of rich content (images, artifacts) in M0 — attachments
   are referenced in metadata and preserved verbatim, rendered in later
   milestones.

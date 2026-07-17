@@ -10,7 +10,7 @@ from __future__ import annotations
 
 from typing import Any
 
-from mirrormind.model import Conversation, Message, iso_utc
+from obsidianhub.model import Conversation, Message, iso_utc
 
 SOURCE = "chatgpt"
 

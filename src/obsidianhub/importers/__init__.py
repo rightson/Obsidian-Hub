@@ -5,8 +5,8 @@ from __future__ import annotations
 import json
 from pathlib import Path
 
-from mirrormind.model import Conversation
-from mirrormind.importers import chatgpt, claude, generic
+from obsidianhub.model import Conversation
+from obsidianhub.importers import chatgpt, claude, generic
 
 IMPORTERS = {
     "claude": claude,

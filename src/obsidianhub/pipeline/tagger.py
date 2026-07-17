@@ -13,7 +13,7 @@ from __future__ import annotations
 import re
 from collections import Counter
 
-from mirrormind.model import Conversation
+from obsidianhub.model import Conversation
 
 _CODE_FENCE = re.compile(r"^```([A-Za-z0-9_+#-]+)", re.MULTILINE)
 _WORD = re.compile(r"[a-zA-Z][a-zA-Z0-9_-]{3,}")
